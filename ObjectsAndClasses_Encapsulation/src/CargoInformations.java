@@ -1,12 +1,12 @@
 package src;
 
 public class CargoInformations {
-    public int dimensions;
-    public int weight;
-    public String address;
-    public boolean abilityToRotate;
-    public String registrationNumber;
-    public boolean fragile;
+    public final int dimensions;
+    public final int weight;
+    public final String address;
+    public final boolean abilityToRotate;
+    public final String registrationNumber;
+    public final boolean fragile;
 
     public CargoInformations(int dimensions, int weight,
                              String address, boolean abilityToRotate,
@@ -23,55 +23,66 @@ public class CargoInformations {
         return dimensions;
     }
 
-    public void setDimensions(int dimensions) {
-        this.dimensions = dimensions;
+    public CargoInformations setDimensions(int dimensions) {
+        return new CargoInformations(dimensions, weight,
+                address, abilityToRotate,
+                registrationNumber, fragile);
     }
 
     public int getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public CargoInformations setWeight(int weight) {
+        return new CargoInformations(
+                dimensions, weight,
+                address, abilityToRotate,
+                registrationNumber, fragile);
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public CargoInformations setAddress(String address) {
+        return new CargoInformations(
+                dimensions, weight,
+                address, abilityToRotate,
+                registrationNumber, fragile);
     }
 
     public boolean isAbilityToRotate() {
         return abilityToRotate;
     }
 
-    public void setAbilityToRotate(boolean abilityToRotate) {
-        this.abilityToRotate = abilityToRotate;
+    public CargoInformations setAbilityToRotate(boolean abilityToRotate) {
+        return new CargoInformations(
+                dimensions, weight,
+                address, abilityToRotate,
+                registrationNumber, fragile);
     }
 
     public String getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    public CargoInformations setRegistrationNumber(String registrationNumber) {
+        return new CargoInformations(
+                dimensions, weight,
+                address, abilityToRotate,
+                registrationNumber, fragile);
     }
 
     public boolean isFragile() {
         return fragile;
     }
 
-    public void setFragile(boolean fragile) {
-        this.fragile = fragile;
+    public CargoInformations setFragile(boolean fragile) {
+        return new CargoInformations(
+                dimensions, weight,
+                address, abilityToRotate,
+                registrationNumber, fragile);
     }
-
-
-
-
-
-
 
     public String toString(){
         return  dimensions + "\n" + weight + "\n"
@@ -79,68 +90,5 @@ public class CargoInformations {
                 + registrationNumber + "\n" + fragile;
     }
 
-    //    public int getDimensions() {
-////        return dimensions;
-////    }
-////
-////    public CargoInformations setDimensions(int dimensions) {
-////        return new CargoInformations(dimensions, weight,
-////                address, abilityToRotate,
-////                registrationNumber, fragile);
-////    }
-////
-////    public int getWeight() {
-////        return weight;
-////    }
-////
-////    public CargoInformations setWeight(int weight) {
-////        return new CargoInformations(
-////                dimensions, weight,
-////                address, abilityToRotate,
-////                registrationNumber, fragile);
-////    }
-////
-////    public String getAddress() {
-////        return address;
-////    }
-////
-////    public CargoInformations setAddress(String address) {
-////        return new CargoInformations(
-////                dimensions, weight,
-////                address, abilityToRotate,
-////                registrationNumber, fragile);
-////    }
-////
-////    public boolean isAbilityToRotate() {
-////        return abilityToRotate;
-////    }
-////
-////    public CargoInformations setAbilityToRotate(boolean abilityToRotate) {
-////        return new CargoInformations(
-////                dimensions, weight,
-////                address, abilityToRotate,
-////                registrationNumber, fragile);
-////    }
-////
-////    public String getRegistrationNumber() {
-////        return registrationNumber;
-////    }
-////
-////    public CargoInformations setRegistrationNumber(String registrationNumber) {
-////        return new CargoInformations(
-////                dimensions, weight,
-////                address, abilityToRotate,
-////                registrationNumber, fragile);
-////    }
-////
-////    public boolean isFragile() {
-////        return fragile;
-////    }
-////
-////    public CargoInformations setFragile(boolean fragile) {
-////        return new CargoInformations(
-////                dimensions, weight,
-////                address, abilityToRotate,
-////                registrationNumber, fragile);
-////    }
+
 }
