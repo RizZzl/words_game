@@ -31,6 +31,7 @@ public class PhoneCleanerRegex {
       } else {
           System.out.println(phoneNumber);
       }
+
     }
   }
 }

@@ -19,5 +19,4 @@ public class SplitText {
     }
     return stringBuilder.toString().trim();
   }
-
 }

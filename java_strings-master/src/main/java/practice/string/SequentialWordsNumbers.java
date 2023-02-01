@@ -23,7 +23,6 @@ public class SequentialWordsNumbers {
                 }
             }
         }
-
         return stringBuilder.toString().trim();
     }
 }
