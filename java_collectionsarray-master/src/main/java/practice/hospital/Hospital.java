@@ -19,8 +19,6 @@ public class Hospital {
     }
 
     public static String getReport(float[] temperatureData) {
-        double minHealthTemp = 36.2;
-        double maxHealthTemp = 36.9;
 
         float[] patientsTemp = Hospital.generatePatientsTemperatures(30);
         double average = 0;
@@ -38,8 +36,8 @@ public class Hospital {
 
         int patientsHealth = 0;
         for (int i = 0; i < patientsTemp.length - 1; i++) {
-            double temp = patientsTemp[i];
-            if (minHealthTemp <= temp || maxHealthTemp >= temp) {
+            float temp = patientsTemp[i];
+            if (36.2f <= temp || temp <= 36.9f) {
                 patientsHealth++;
             }
         }
