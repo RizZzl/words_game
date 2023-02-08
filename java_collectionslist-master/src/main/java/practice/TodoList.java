@@ -34,26 +34,17 @@ public class TodoList {
     public void delete(int index) {
         // TODO: удалить дело находящееся по переданному индексу,
         //  проверьте возможность удаления дела
-        if (index >= 0 && index <= todoList.size()) {
+        if (index >= 0 && index <= todoList.size() - 1) {
             System.out.println("Дело " + dm + todoList.get(index) + dm + " удалено");
             todoList.remove(index);
-        } else {
+        } else  {
             System.out.println("Дело с таким номером не существует");
         }
     }
 
-    public String getTodos() {
-        String todos = "";
-        for (int i = 0; i < todoList.size(); i++) {
-            todos = todos + todoList.get(i) + ", ";
-        }
-        todos = '[' + todos.substring(0, todos.length() - 2) + ']';
-        return todos.toString();
+    public ArrayList<String> getTodos() {
+        // TODO: вернуть список дел
+        return new ArrayList<String>(todoList);
     }
-
-//    public ArrayList<String> getTodos() {
-//        // TODO: вернуть список дел
-//        return new ArrayList<>();
-//    }
 
 }

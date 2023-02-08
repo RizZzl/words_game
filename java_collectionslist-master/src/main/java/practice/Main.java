@@ -20,8 +20,6 @@ public class Main {
                 index = Integer.parseInt(indexStr);
             }
 
-
-
             if (commands.equals("ADD")) {
                 todoList.add(list);
             }
