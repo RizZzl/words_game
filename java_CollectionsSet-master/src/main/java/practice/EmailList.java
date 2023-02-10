@@ -2,13 +2,13 @@ package practice;
 import java.util.*;
 
 public class EmailList {
-        TreeSet<String> emailList = new TreeSet<>();
+    TreeSet<String> emailList = new TreeSet<>();
+
     public void add(String email) {
-        char d = (char) 64;
-        String a = String.valueOf(d);
-        String point = email.substring(email.length() - 3, email.length() - 2);
         email = email.toLowerCase();
-        if (point.equals(".")) {
+        String format = email.replaceAll("[^@.]", "").trim();
+        System.out.println(format);
+        if (format.equals("@.")) {
             emailList.add(email);
         }
 
