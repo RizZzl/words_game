@@ -7,7 +7,6 @@ public class EmailList {
     public void add(String email) {
         email = email.toLowerCase();
         String format = email.replaceAll("[^@.]", "").trim();
-        System.out.println(format);
         if (format.equals("@.")) {
             emailList.add(email);
         }
