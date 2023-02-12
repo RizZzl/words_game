@@ -32,8 +32,6 @@ public class PhoneBook {
         // формат одного контакта "Имя - Телефон"
         // если контакт не найден - вернуть пустой TreeSet
         TreeSet<String> setPhoneBook = new TreeSet<>();
-        HashMap<String, List<String>> multiMap = new HashMap<>();
-        ArrayList<String> twoTelephones = new ArrayList<>();
         String telPlusName = "";
         if (phoneBook.containsValue(name)) {
             telPlusName = telPlusName.concat(name) + " - ";
@@ -52,11 +50,23 @@ public class PhoneBook {
     public Set<String> getAllContacts() {
         // формат одного контакта "Имя - Телефон"
         // если контактов нет в телефонной книге - вернуть пустой TreeSet
+
+        Map<String, String> contacts = new HashMap<>();
+        for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
+            if (contacts.containsKey(entry.getValue())) {
+                String numbers = contacts.get(entry.getValue());
+                contacts.put(entry.getValue(), numbers.concat(", ").concat(entry.getKey()));
+            } else {
+                contacts.put(entry.getValue(), entry.getKey());
+            }
+        }
         TreeSet<String> setPhoneBook = new TreeSet<>();
         for (String key : phoneBook.keySet()) {
-            setPhoneBook.add(phoneBook.get(key) + " - " + key);
+            String numbers = contacts.values().toString();
+            setPhoneBook.add(phoneBook.get(key) + " - " + numbers.replaceAll("[\\[\\]]", ""));
         }
         return new TreeSet<>(setPhoneBook);
+
     }
 
     // для обхода Map используйте получение пары ключ->значение Map.Entry<String,String>
