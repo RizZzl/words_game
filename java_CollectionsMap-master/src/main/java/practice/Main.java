@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    private static PhoneBook phonesBook = new PhoneBook();
+    public static PhoneBook phonesBook = new PhoneBook();
 
     public static void main(String[] args) {
 
@@ -17,14 +17,15 @@ public class Main {
             String name = str.replaceAll("[^А-Яа-я]+", "");
             String phone = str.replaceAll("[^0-9]+", "");
 
+            if (str.equals(phone + " " + name)) {
+                phonesBook.addContact(phone, name);
+            }
             if (str.equals(name)) {
                 phonesBook.addContact(phone, name);
-                phonesBook.getContactByName(name);
             }
 
             if (str.equals(phone)) {
                 phonesBook.addContact(phone, name);
-                phonesBook.getContactByPhone(phone);
             }
 
             if (command.equals("LIST")) {

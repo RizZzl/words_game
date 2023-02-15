@@ -3,7 +3,7 @@ package practice;
 import java.util.*;
 
 public class PhoneBook {
-    HashMap<String, String> phoneBook = new HashMap<>();
+    Map<String, String> phoneBook = new HashMap<>();
     public void addContact(String phone, String name) {
         // проверьте корректность формата имени и телефона
         // (рекомедуется написать отдельные методы для проверки является строка именем/телефоном)
@@ -61,12 +61,11 @@ public class PhoneBook {
             }
         }
         TreeSet<String> setPhoneBook = new TreeSet<>();
-        for (String key : phoneBook.keySet()) {
-            String numbers = contacts.values().toString();
-            setPhoneBook.add(phoneBook.get(key) + " - " + numbers.replaceAll("[\\[\\]]", ""));
+        for (String key : contacts.keySet()) {
+            String resultString = key + " - " + contacts.get(key);
+            setPhoneBook.add(resultString.replaceAll("[\\[\\]]",""));
         }
         return new TreeSet<>(setPhoneBook);
-
     }
 
     // для обхода Map используйте получение пары ключ->значение Map.Entry<String,String>
