@@ -3,17 +3,17 @@ package practice_1;
 import java.util.*;
 
 public class Company {
-    public static double income;
+    public double income;
     public static ArrayList<Employee> employeeArrayList = new ArrayList();
 
     public Company() {
     }
 
     public void setIncome(double income) {
-        Company.income = income;
+        this.income = income;
     }
 
-    public static double getIncome() {
+    public double getIncome() {
         return income;
     }
 
