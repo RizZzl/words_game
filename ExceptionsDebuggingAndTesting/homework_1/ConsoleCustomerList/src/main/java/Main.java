@@ -40,7 +40,7 @@ public class Main {
                     System.out.println(COMMAND_ERROR);
                 }
             } catch (IllegalArgumentException ex) {
-                LOGGER.info(ex.getMessage());
+                LOGGER.error(ex.getMessage());
                 System.out.println(ex.getMessage());
             }
 
