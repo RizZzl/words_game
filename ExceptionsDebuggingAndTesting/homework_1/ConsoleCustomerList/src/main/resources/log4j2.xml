@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="WARN">
   <appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
 
-    <File name="Errors" fileName="logs/errors.log">
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    <File name="QueriesFile" fileName="logs/queries.log">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
       <Filters>
-        <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL" />
+        <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
       </Filters>
     </File>
-
-    <File name="AllInfo" fileName="logs/info.log">
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-      <Filters>
-        <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL" />
-      </Filters>
+    <File name="ErrorsFile" fileName="logs/errors.log">
+      <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
     </File>
   </appenders>
 
   <loggers>
-    <root level="info">
-      <appender-ref ref="SearchFile" level="info"/>
+    <root level="ALL">
+      <appender-ref ref="QueriesFile" level="info"/>
+      <appender-ref ref="ErrorsFile" level="error"/>
     </root>
+
   </loggers>
 </configuration>
 

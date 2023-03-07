@@ -28,14 +28,19 @@ public class Main {
             try {
                 if (tokens[0].equals("add")) {
                     executor.addCustomer(tokens[1]);
+                    LOGGER.info(command);
                 } else if (tokens[0].equals("list")) {
                     executor.listCustomers();
+                    LOGGER.info(command);
                 } else if (tokens[0].equals("remove")) {
                     executor.removeCustomer(tokens[1]);
+                    LOGGER.info(command);
                 } else if (tokens[0].equals("count")) {
                     System.out.println("There are " + executor.getCount() + " customers");
+                    LOGGER.info(command);
                 } else if (tokens[0].equals("help")) {
                     System.out.println(helpText);
+                    LOGGER.info(command);
                 } else {
                     System.out.println(COMMAND_ERROR);
                 }
@@ -43,7 +48,6 @@ public class Main {
                 LOGGER.error(ex.getMessage());
                 System.out.println(ex.getMessage());
             }
-
         }
     }
 }
