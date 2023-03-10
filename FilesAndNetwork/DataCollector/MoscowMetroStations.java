@@ -19,7 +19,7 @@ public class MoscowMetroStations {
         elements = doc.select("span.js-metro-line");
         lineNumber = doc.select("div.js-depend");
         for (int i = 0; i < elements.size(); i++) {
-            builder = builder.append(elements.get(i).text()).append("\n").append(lineNumber.get(i).text()).append("\n");
+            builder = builder.append(elements.get(i).text()).append(":\n").append(lineNumber.get(i).text().replaceAll("[0-9.]", "")).append("\n");
         }
         System.out.println(builder);
     }
