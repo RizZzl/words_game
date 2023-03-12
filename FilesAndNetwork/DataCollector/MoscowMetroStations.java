@@ -13,15 +13,17 @@ public class MoscowMetroStations {
     private Elements elements;
     private Elements lineNumber;
 
-    public void getMoscowMetroStations() {
+    public String getMoscowMetroStations() {
         String htmlFile = parseFile("data/code.html");
         Document doc = Jsoup.parse(htmlFile);
         elements = doc.select("span.js-metro-line");
         lineNumber = doc.select("div.js-depend");
         for (int i = 0; i < elements.size(); i++) {
-            builder = builder.append(elements.get(i).text()).append(":\n").append(lineNumber.get(i).text().replaceAll("[0-9.]", "")).append("\n");
+            builder = builder.append(elements.get(i).text()).append(":\n\t")
+                    .append(lineNumber.get(i).text().replaceAll("[0-9.]", "")).append("\n");
         }
-        System.out.println(builder);
+//        System.out.println(builder);
+        return builder.toString();
     }
 
     public String parseFile(String path) {
@@ -39,6 +41,6 @@ public class MoscowMetroStations {
 
     @Override
     public String toString() {
-        return null;
+        return "MoscowMetroStations" + getMoscowMetroStations();
     }
 }

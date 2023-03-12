@@ -10,18 +10,19 @@ import java.util.List;
 
 public class FileSearch {
 
-    String listStations;
-    String DATA_FILE = "";
+    public StringBuilder listJsonFile = new StringBuilder();
+    public StringBuilder listCSVFile = new StringBuilder();
+    public String DATA_FILE = "";
 
     public void fileReader(String path) throws ParseException, FileNotFoundException {
         File doc = new File(path);
         if (doc.isFile()) {
             DATA_FILE = doc.getAbsolutePath();
             if (doc.getName().endsWith(".json")) {
-                listStations = listStations + doc + "\n";
+                listJsonFile.append(" \n").append(doc);
             }
             if (doc.getName().endsWith(".csv")) {
-                listStations = listStations + doc + "\n";
+                listCSVFile.append("\n").append(doc);
             }
         } else {
             File[] files = doc.listFiles();
@@ -30,18 +31,7 @@ public class FileSearch {
                 fileReader(file.getAbsolutePath());
             }
         }
-        System.out.println(listStations);
-    }
 
-    public String getJsonFile() {
-        StringBuilder builder = new StringBuilder();
-        try {
-            List<String> lines = Files.readAllLines(Paths.get(DATA_FILE));
-            lines.forEach(line -> builder.append(line));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return builder.toString();
+//        System.out.println(listJsonFile.toString() + listCSVFile);
     }
-
 }
