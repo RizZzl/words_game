@@ -1,20 +1,23 @@
-import java.sql.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+;
 
 public class Main {
-    private static String url = "jdbc:mysql://localhost:3306/skillbox?useSSL=false";
-    private static String user = "root";
-    private static String pass = "testtest";
-
     public static void main(String[] args) throws Exception {
-        Connection connection1 = DriverManager.getConnection(url, user, pass);
-        Statement statement1 = connection1.createStatement();
-        ResultSet resultSet2 = statement1.executeQuery("SELECT course_name, COUNT(course_name)/((MAX(MONTH(subscription_date)) - MIN(MONTH(subscription_date))) + 1) AS Coefficient FROM PurchaseList GROUP BY course_name");
-        while (resultSet2.next()) {
-            String result = resultSet2.getString("course_name") + " - " + resultSet2.getString("Coefficient");
-            System.out.println(result);
-        }
-        resultSet2.close();
-        statement1.close();
-        connection1.close();
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure("hibernate.cfg.xml").build();
+        Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
+        SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
+
+        Session session = sessionFactory.openSession();
+
+        Course course = session.get(Course.class, 1);
+        System.out.println(course.getName() + ": количество студентов - " + course.getStudentCount());
+
+        sessionFactory.close();
     }
 }
