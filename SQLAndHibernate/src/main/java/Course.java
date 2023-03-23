@@ -81,11 +81,11 @@ public class Course
         return studentsCount;
     }
 
-    public void setStudentCount(int studentCount) {
-        this.studentsCount = studentCount;
+    public void setStudentsCount(int studentsCount) {
+        this.studentsCount = studentsCount;
     }
 
-    public int getPrise() {
+    public int getPrice() {
         return price;
     }
 
