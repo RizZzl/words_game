@@ -1,4 +1,4 @@
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Courses")
@@ -21,13 +21,13 @@ public class Course
     @Column(name = "teacher_id")
     private int teacherId;
 
-    @Column(name = "student_count")
-    private int studentCount;
+    @Column(name = "students_count")
+    private int studentsCount;
 
-    private int prise;
+    private int price;
 
-    @Column(name = "prise_per_hour")
-    private float prisePerHour;
+    @Column(name = "price_per_hour")
+    private float pricePerHour;
 
     public int getId() {
         return id;
@@ -77,27 +77,27 @@ public class Course
         this.teacherId = teacherId;
     }
 
-    public int getStudentCount() {
-        return studentCount;
+    public int getStudentsCount() {
+        return studentsCount;
     }
 
     public void setStudentCount(int studentCount) {
-        this.studentCount = studentCount;
+        this.studentsCount = studentCount;
     }
 
     public int getPrise() {
-        return prise;
+        return price;
     }
 
-    public void setPrise(int prise) {
-        this.prise = prise;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public float getPrisePerHour() {
-        return prisePerHour;
+    public float getPricePerHour() {
+        return pricePerHour;
     }
 
-    public void setPrisePerHour(float prisePerHour) {
-        this.prisePerHour = prisePerHour;
+    public void setPricePerHour(float pricePerHour) {
+        this.pricePerHour = pricePerHour;
     }
 }
