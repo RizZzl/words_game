@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Bank {
@@ -12,24 +12,38 @@ public class Bank {
         return random.nextBoolean();
     }
 
-    /**
-     * TODO: реализовать метод. Метод переводит деньги между счетами. Если сумма транзакции > 50000,
-     * то после совершения транзакции, она отправляется на проверку Службе Безопасности – вызывается
-     * метод isFraud. Если возвращается true, то делается блокировка счетов (как – на ваше
-     * усмотрение)
-     */
-    public void transfer(String fromAccountNum, String toAccountNum, long amount) {
+    public void transfer(String fromAccountNum, String toAccountNum, long amount) throws InterruptedException {
+        Account fromAccount = accounts.get(fromAccountNum);
+        Account toAccount = accounts.get(toAccountNum);
 
+        if (!fromAccount.isBlocked() || !toAccount.isBlocked()) {
+            transaction(fromAccount, toAccount, amount);
+        }
+        if (amount > 50_000) {
+            if (isFraud(fromAccountNum, toAccountNum, amount)) {
+                fromAccount.blockAccount();
+                toAccount.blockAccount();
+            }
+            transaction(fromAccount, toAccount, amount);
+        }
     }
 
-    /**
-     * TODO: реализовать метод. Возвращает остаток на счёте.
-     */
+    public void transaction(Account fromAccount, Account toAccount, long amount) {
+        if (fromAccount.withdrawMoney(amount)) {
+            toAccount.putMoney(amount);
+        }
+    }
+
     public long getBalance(String accountNum) {
-        return 0;
+        Account account = accounts.get(accountNum);
+        return account.getMoney();
     }
 
     public long getSumAllAccounts() {
-        return 0;
+        long sumAllAccounts = 0;
+        for (int i = 1; i <= accounts.size(); i++) {
+            sumAllAccounts = sumAllAccounts + accounts.get(i).getMoney();
+        }
+        return sumAllAccounts;
     }
 }
