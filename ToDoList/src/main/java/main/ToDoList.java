@@ -8,9 +8,9 @@ import java.util.Random;
 @RestController
 public class ToDoList {
 
-    @RequestMapping
+    @RequestMapping("/")
     public String index() {
-        Random random = new Random();
-        return random.toString();
+        double random = Math.random();
+        return String.valueOf(random);
     }
 }
