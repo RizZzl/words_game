@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -34,13 +35,26 @@ public class ToDoListController {
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(null);
     }
 
+    public ResponseEntity put(List<Integer> idList, List<ToDoList> list) {
+        for (int i = 0; i < list.size(); i++) {
+            ToDoList toDoList = list.get(i);
+            int id = idList.get(i);
+
+            if (Storage.getToDo(id) == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+            Storage.change(id, toDoList);
+        }
+        return (ResponseEntity) ResponseEntity.status(HttpStatus.OK);
+    }
+
     @PutMapping("/toDoList/{id}")
     public ResponseEntity change(ToDoList toDo, @PathVariable int id) {
         ToDoList toDoList = Storage.getToDo(id);
         if (toDoList == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-        Storage.addToDoList(toDoList);
+        Storage.change(id, toDoList);
         return (ResponseEntity) ResponseEntity.status(HttpStatus.OK);
     }
 

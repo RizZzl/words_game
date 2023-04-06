@@ -25,6 +25,12 @@ public class Storage {
         return id;
     }
 
+    public static void change(int id, ToDoList toDo) {
+        if (toDoList.containsKey(id)) {
+            toDoList.replace(id, toDo);
+        }
+    }
+
     public static ToDoList getToDo(int id) {
         if (toDoList.containsKey(id)) {
             return toDoList.get(id);
