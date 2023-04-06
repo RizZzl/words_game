@@ -35,6 +35,7 @@ public class ToDoListController {
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(null);
     }
 
+    @PutMapping("/toDoList/")
     public ResponseEntity put(List<Integer> idList, List<ToDoList> list) {
         for (int i = 0; i < list.size(); i++) {
             ToDoList toDoList = list.get(i);
