@@ -7,19 +7,19 @@ $(function(){
             .append('<div>' + toDoCode + '</div>');
     };
 
-    //Show adding book form
+    //Show adding toDoList form
     $('#show-add-toDo-form').click(function(){
         $('#toDo-form').css('display', 'flex');
     });
 
-    //Closing adding book form
+    //Closing adding toDoList form
     $('#toDo-form').click(function(event){
         if(event.target === this) {
             $(this).css('display', 'none');
         }
     });
 
-    //Getting book
+    //Getting toDoList
     $(document).on('click', '.ToDo-link', function(){
         var link = $(this);
         var toDoId = link.data('id');
@@ -41,7 +41,7 @@ $(function(){
         return false;
     });
 
-    //Adding book
+    //Adding toDoList
     $('#save-toDo').click(function()
     {
         var data = $('#toDo-form form').serialize();
