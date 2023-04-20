@@ -18,6 +18,7 @@ public class MainForm {
     private JLabel LabelPatronymic;
     private JLabel LabelName;
     private JLabel LabelSurname;
+    private JLabel response;
 
     public MainForm() {
         expand.setVisible(false);
@@ -54,7 +55,7 @@ public class MainForm {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (name.getText().equals("") || surname.getText().equals("")) {
+                if (name.getText().trim().equals("") || surname.getText().trim().equals("")) {
                     JOptionPane.showMessageDialog(
                             mainPanel,
                             "Имя или Фамилия не заполнены.\n" + "Попробуйте еще раз.",
@@ -62,14 +63,19 @@ public class MainForm {
                             JOptionPane.PLAIN_MESSAGE
                     );
                 } else {
-                    snp.setVisible(false);
-                    JTextField textField = new JTextField();
-                    textField.getTopLevelAncestor();
-                    textField.setLocation(300, 200);
-                    textField.setText(surname.getText() + " " + name.getText() + " " + patronymic.getText());
-                    collapse.setVisible(false);
+                    surname.setVisible(false);
+                    name.setVisible(false);
+                    patronymic.setVisible(false);
+                    LabelPatronymic.setVisible(false);
+                    LabelSurname.setVisible(false);
+                    LabelName.setVisible(false);
 
+                    response.setVisible(true);
+                    response.setText(surname.getText() + " " + name.getText() + " " + patronymic.getText());
+
+                    collapse.setVisible(false);
                     expand.setVisible(true);
+
                     expand.addActionListener(new Action() {
                         @Override
                         public Object getValue(String key) {
@@ -103,7 +109,7 @@ public class MainForm {
 
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            String[] SNP = textField.getText().split(" ");
+                            String[] SNP = response.getText().split(" ");
                             if (SNP.length < 2) {
                                 JOptionPane.showMessageDialog(
                                         mainPanel,
@@ -112,11 +118,18 @@ public class MainForm {
                                         JOptionPane.PLAIN_MESSAGE
                                 );
                             } else {
-                                snp.setVisible(true);
+                                response.setVisible(false);
+
+                                surname.setVisible(true);
+                                name.setVisible(true);
+                                patronymic.setVisible(true);
+                                LabelPatronymic.setVisible(true);
+                                LabelSurname.setVisible(true);
+                                LabelName.setVisible(true);
 
                                 surname.setText(SNP[0]);
                                 name.setText(SNP[1]);
-                                if (SNP[2].isEmpty()) {
+                                if (!patronymic.getText().trim().equals("")) {
                                     patronymic.setText(SNP[2]);
                                 }
 
