@@ -22,7 +22,7 @@ public class DBConnection {
                     "name TINYTEXT NOT NULL, " +
                     "birthDate DATE NOT NULL, " +
                     "`count` INT NOT NULL, " +
-                    "PRIMARY KEY(id), KEY(name(50)) " +
+                    "PRIMARY KEY(id), KEY(name(50)), " +
                     "UNIQUE KEY name_date(name(50), birthDate))");
 
             } catch (SQLException e) {
@@ -44,8 +44,6 @@ public class DBConnection {
 
         insertQuery.append((insertQuery.length() == 0 ? "" : ",") +
                 "('" + name + "', '" + birthDay + "', 1)");
-
-
 
 //        String sql =
 //            "SELECT id FROM voter_count WHERE birthDate='" + birthDay + "' AND name='" + name + "'";

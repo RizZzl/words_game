@@ -26,18 +26,16 @@ public class Loader {
         String fileName = "VoteAnalyzer/res/data-1572M.xml";
 
         long usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-
+        parseFile(fileName);
 //        SAXParserFactory factory = SAXParserFactory.newInstance();
 //        SAXParser parser = factory.newSAXParser();
 //        XMLHandler handler = new XMLHandler();
 //        parser.parse(new File(fileName), handler);
 //        handler.printDuplicatedVoters();
-        DBConnection.customSelect();
+        DBConnection.printVoterCounts();
 
         usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage;
         System.out.println(usage);
-
-
     }
 
     private static void parseFile(String fileName) throws Exception {
@@ -46,7 +44,7 @@ public class Loader {
         Document doc = db.parse(new File(fileName));
 
         findEqualVoters(doc);
-        fixWorkTimes(doc);
+//        fixWorkTimes(doc);
     }
 
     private static void findEqualVoters(Document doc) throws Exception {

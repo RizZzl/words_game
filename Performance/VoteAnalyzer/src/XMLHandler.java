@@ -14,9 +14,9 @@ public class XMLHandler extends DefaultHandler {
     int limit = 5_000_000;
     int number = 0;
 
-    public XMLHandler() {
-        voterCounts = new HashMap<>();
-    }
+//    public XMLHandler() {
+//        voterCounts = new HashMap<>();
+//    }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -47,19 +47,19 @@ public class XMLHandler extends DefaultHandler {
 //        }
     }
 
-    @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (qName.equals("voter")) {
-            voter = null;
-        }
-    }
-
-    public void printDuplicatedVoters() {
-        for (Voter voter : voterCounts.keySet()) {
-            int count = voterCounts.get(voter);
-            if (count > 1) {
-                System.out.println(voter.toString() + " - " + count);
-            }
-        }
-    }
+//    @Override
+//    public void endElement(String uri, String localName, String qName) throws SAXException {
+//        if (qName.equals("voter")) {
+//            voter = null;
+//        }
+//    }
+//
+//    public void printDuplicatedVoters() {
+//        for (Voter voter : voterCounts.keySet()) {
+//            int count = voterCounts.get(voter);
+//            if (count > 1) {
+//                System.out.println(voter.toString() + " - " + count);
+//            }
+//        }
+//    }
 }
