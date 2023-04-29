@@ -44,7 +44,7 @@ public class Loader {
         Document doc = db.parse(new File(fileName));
 
         findEqualVoters(doc);
-        fixWorkTimes(doc);
+//        fixWorkTimes(doc);
     }
 
     private static void findEqualVoters(Document doc) throws Exception {
@@ -64,6 +64,7 @@ public class Loader {
             count++;
             if (count % batchSize == 0) {
                 DBConnection.executeMultiInsert();
+                DBConnection.clearRequest();
             }
 //            Voter voter = new Voter(name, birthDay);
 //            Integer count = voterCounts.get(voter);

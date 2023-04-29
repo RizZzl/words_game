@@ -60,6 +60,11 @@ public class DBConnection {
 //        rs.close();
     }
 
+    public static void clearRequest() {
+        insertQuery = new StringBuilder();
+        System.out.println("1");
+    }
+
     public static int customSelect() throws SQLException {
         String sql = "SELECT id FROM voter_count WHERE name='Исаичев Эмилиан'";
         ResultSet rs = DBConnection.getConnection().createStatement().executeQuery(sql);
