@@ -44,12 +44,14 @@ public class Loader {
         Document doc = db.parse(new File(fileName));
 
         findEqualVoters(doc);
-//        fixWorkTimes(doc);
+        fixWorkTimes(doc);
     }
 
     private static void findEqualVoters(Document doc) throws Exception {
         NodeList voters = doc.getElementsByTagName("voter");
         int votersCount = voters.getLength();
+        int batchSize = 100;
+        int count = 0;
         for (int i = 0; i < votersCount; i++) {
             Node node = voters.item(i);
             NamedNodeMap attributes = node.getAttributes();
@@ -59,6 +61,10 @@ public class Loader {
 //            Date birthDay = birthDayFormat.parse(attributes.getNamedItem("birthDay").getNodeValue());
 
             DBConnection.countVoter(name, birthDay);
+            count++;
+            if (count % batchSize == 0) {
+                DBConnection.executeMultiInsert();
+            }
 //            Voter voter = new Voter(name, birthDay);
 //            Integer count = voterCounts.get(voter);
 //            voterCounts.put(voter, count == null ? 1 : count + 1);
