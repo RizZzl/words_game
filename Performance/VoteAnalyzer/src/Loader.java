@@ -44,6 +44,7 @@ public class Loader {
         SAXParser parser = spf.newSAXParser();
         XMLHandler handler = new XMLHandler();
         parser.parse(new File(fileName), handler);
+        DBConnection.executeMultiInsert();
     }
 
     private static void findEqualVoters(Document doc) throws Exception {
