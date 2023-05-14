@@ -2,21 +2,17 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 public class XMLHandler extends DefaultHandler {
+
     private Voter voter;
     private static SimpleDateFormat birthDayFormat = new SimpleDateFormat("yyyy.MM.dd");
     private HashMap<Voter, Integer> voterCounts;
+
     int limit = 5_000_000;
     int number = 0;
-
-//    public XMLHandler() {
-//        voterCounts = new HashMap<>();
-//    }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -25,6 +21,11 @@ public class XMLHandler extends DefaultHandler {
             String birthDate = attributes.getValue("birthDay");
             try {
                 DBConnection.countVoter(name, birthDate);
+
+                if (number % 1_000_000 == 0) {
+                    DBConnection.executeMultiInsert();
+                    DBConnection.clearRequest();
+                }
             } catch (Exception e){
                 System.out.println(e.getMessage());
             }

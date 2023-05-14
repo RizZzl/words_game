@@ -45,6 +45,7 @@ public class DBConnection {
         insertQuery.append((insertQuery.length() == 0 ? "" : ",") +
                 "('" + name + "', '" + birthDay + "', 1)");
 
+
 //        String sql =
 //            "SELECT id FROM voter_count WHERE birthDate='" + birthDay + "' AND name='" + name + "'";
 //        ResultSet rs = DBConnection.getConnection().createStatement().executeQuery(sql);
@@ -62,7 +63,6 @@ public class DBConnection {
 
     public static void clearRequest() {
         insertQuery = new StringBuilder();
-        System.out.println("1");
     }
 
     public static int customSelect() throws SQLException {

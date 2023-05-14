@@ -2,12 +2,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
 
 import javax.xml.parsers.*;
 import java.io.File;
+import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,16 +22,17 @@ public class Loader {
     private static HashMap<Integer, WorkTime> voteStationWorkTimes = new HashMap<>();
     private static HashMap<Voter, Integer> voterCounts = new HashMap<>();
 
+
     public static void main(String[] args) throws Exception {
         String fileName = "VoteAnalyzer/res/data-1572M.xml";
 
-        long usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         parseFile(fileName);
 //        SAXParserFactory factory = SAXParserFactory.newInstance();
 //        SAXParser parser = factory.newSAXParser();
 //        XMLHandler handler = new XMLHandler();
 //        parser.parse(new File(fileName), handler);
 //        handler.printDuplicatedVoters();
+        long usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         DBConnection.printVoterCounts();
 
         usage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() - usage;
@@ -39,12 +40,10 @@ public class Loader {
     }
 
     private static void parseFile(String fileName) throws Exception {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(new File(fileName));
-
-        findEqualVoters(doc);
-//        fixWorkTimes(doc);
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser parser = spf.newSAXParser();
+        XMLHandler handler = new XMLHandler();
+        parser.parse(new File(fileName), handler);
     }
 
     private static void findEqualVoters(Document doc) throws Exception {
